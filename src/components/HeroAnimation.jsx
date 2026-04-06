@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
 const frameCount = 75;
-const currentFrame = (index) => `/frames/${index.toString().padStart(4, '0')}.jpg`;
+const currentFrame = (index) => `${import.meta.env.BASE_URL}frames/${index.toString().padStart(4, '0')}.jpg`;
 
 const HeroAnimation = () => {
   const canvasRef = useRef(null);
