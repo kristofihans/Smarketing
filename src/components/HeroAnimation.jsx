@@ -70,11 +70,10 @@ const HeroAnimation = () => {
       }
       
       if (titleBoxRef.current) {
-        if (window.scrollY > 50) {
-          titleBoxRef.current.classList.add('visible');
-        } else {
-          titleBoxRef.current.classList.remove('visible');
-        }
+        // Starts fading out at 10% scroll, completely disappears by 30% scroll
+        const textOpacity = Math.max(0, Math.min(1, 1 - (scrollFraction - 0.1) * 5));
+        titleBoxRef.current.style.opacity = textOpacity;
+        titleBoxRef.current.style.transform = `scale(${1 + scrollFraction * 0.2})`; // slight scale effect
       }
 
       const frameIndex = Math.min(
@@ -105,11 +104,9 @@ const HeroAnimation = () => {
         canvasRef.current.style.filter = `blur(${blurValue}px) brightness(${brightnessValue}%)`;
 
         if (titleBoxRef.current) {
-          if (window.scrollY > 50) {
-            titleBoxRef.current.classList.add('visible');
-          } else {
-            titleBoxRef.current.classList.remove('visible');
-          }
+          const textOpacity = Math.max(0, Math.min(1, 1 - (scrollFraction - 0.1) * 5));
+          titleBoxRef.current.style.opacity = textOpacity;
+          titleBoxRef.current.style.transform = `scale(${1 + scrollFraction * 0.2})`;
         }
 
         const frameIndex = Math.min(frameCount - 1, Math.floor(scrollFraction * frameCount));
